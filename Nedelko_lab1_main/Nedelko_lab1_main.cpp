@@ -66,7 +66,55 @@ void menu() {
 		<< " 7.Download" << endl
 		<< " 0.Exit" << endl;
 }
-
+//сохранение файлов блокнот
+void saveData(pipe& p, CS& cs) {
+	ofstream fout;
+	fout.open("data.txt", 'w');
+	if (p.length != 0) {
+		fout << "1" << endl
+			<< p.name << endl
+			<< p.length << endl
+			<< p.diametr << endl
+			<< p.status << endl;
+	}
+	else {
+		fout << "0" << endl;
+	}
+	if (cs.shop != 0) {
+		fout << "1" << endl
+			<< cs.name << endl
+			<< cs.shop << endl
+			<< cs.workingShop << endl
+			<< cs.effectiveness << endl;
+	}
+	else {
+		fout << "0" << endl;
+	}
+	fout.close();
+	cout << "The data is saved." << endl;
+}
+//выгрузка файлов из блокнота
+void loadData(pipe& p, CS& cs) {
+	ifstream fin;
+	int exist;
+	fin.open("data.txt");
+	fin >> exist;
+	if (exist == 1) {
+		fin >> p.name;
+		fin >> p.length;
+		fin >> p.diametr;
+		fin >> p.status;
+	}
+	fin >> exist;
+	if (exist == 1) {
+		fin >> cs.name;
+		fin >> cs.shop;
+		fin >> cs.workingShop;
+		fin >> cs.effectiveness;
+	}
+	fin.close();
+	cout << "The data is uploaded." << endl;
+}
 //статус работы трубы
 void statusPipe(pipe& p) {
 	if (p.status == 0) {
