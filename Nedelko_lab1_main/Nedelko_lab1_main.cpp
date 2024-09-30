@@ -88,6 +88,18 @@ void addPipe(pipe& p) {
 	checkStatusOfPipe(p.status);
 	statusPipe(p);
 }
+//редактирование трубы
+void editPipe(pipe& p) {
+	if (p.length != 0) {
+		statusPipe(p);
+		cout << "\nWrite a new status of pipe: \n0.if repairing \n1.if works" << endl;
+		checkStatusOfPipe(p.status);
+		statusPipe(p);
+	}
+	else {
+		cout << "You do not have a pipe!" << endl;
+	}
+}
 //проверка (количество рабочих цехов не может быть больше всех)
 void numberWorkingShops(int max, int& x) {
 	while (((cin >> x).fail()) || (x < 0) || (x > max)) {
@@ -106,6 +118,20 @@ void addCS(CS& cs) {
 	numberWorkingShops(cs.shop, cs.workingShop);
 	cout << "Enter CS efficiency (from 1 to 10)\n";
 	checkEffectiveness(cs.effectiveness);
+}
+//редактирование КС
+void editCS(CS& cs) {
+	if (cs.shop != 0) {
+		cout << "The number of shops: ";
+		cout << cs.shop << endl;
+		cout << "The number of working shops: ";
+		cout << cs.workingShop << endl;
+		cout << "\nWrite a new number of working shops:" << endl;
+		numberWorkingShops(cs.shop, cs.workingShop);
+	}
+	else {
+		cout << "You do not have a CS!" << endl;
+	}
 }
 //просмотр всех объектов
 void viewAll(pipe p, CS cs) {
